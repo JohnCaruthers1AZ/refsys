@@ -1,8 +1,8 @@
 import pandas as pd
 import torch 
 
-# x = torch.rand(5,3)
-# print(x)
+x = torch.rand(5,3)
+print(x)
 
 print(torch.version.cuda)
 
