@@ -1,3 +1,8 @@
+"""
+I want to create a file that inputs a dataframe and outputs a new 
+dataframe with columns renamed
+"""
+
 import pandas as pd
 
 #import data
