@@ -7,7 +7,31 @@ dataframe with columns renamed
 import pandas as pd
 
 # Functions #
-def rename_columns_with_df():
+def rename_columns_with_df(column_name_df: pd.DataFrame, data_df: pd.DataFrame, common: str, label: str):
+    """
+    A function that renames multiple columns of a dataframe using 
+    another dataframe as input. This is helpful when there are too 
+    many columns to relabel manually and the column labels and the
+    desired name are already in a dataframe. It returns a copy of
+    the original dataframe with the newly renamed columns.
+
+    Parameters
+    ----------
+    'column_name_df': Pandas DataFrame
+        Contains the common label and desired label for columns
+        needing renamed.
+
+    'data_df': Pandas DataFrame
+        The dataframe which contains columns needing renamed.      
+
+    'column_name_df_common' : string
+        The common label between 
+
+
+    """
+    column_name_df
+    
+    
     temp_data = pd.read_csv(r"/home/engineering/Documents/PdM/data/temp_data/temp_data_2026_01_19.csv", low_memory=False)
     temp_df = pd.DataFrame(temp_data)
 
