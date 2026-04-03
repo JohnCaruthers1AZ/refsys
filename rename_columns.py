@@ -24,31 +24,39 @@ def rename_columns_with_df(column_name_df: pd.DataFrame, data_df: pd.DataFrame, 
     'data_df': Pandas DataFrame
         The dataframe which contains columns needing renamed.      
 
-    'column_name_df_common' : string
-        The common label between 
+    'common': string
+        The common label between column_name_df and data_df. This
+        is the label of the columns that need to be renamed in 
+        data_df. In column_name_df, this should be in row format.
+    
+    'label': string
+        The desired label for the columns needing renamed which is
+        in column_name_df in row format. The columns with label
+        common_1, common_2, ... common_n in column_name_df
+        and data_df will be renamed to label_1, label_2, ...label_n
+        with 1, 2, .., n being the associated common.
 
-
+    Returns
+    -------
+    'return_df': Pandas DataFrame
+        A deep copy of data_df with the desired columns renamed.
     """
-    column_name_df
+    return_df = data_df.copy()
     
-    
-    temp_data = pd.read_csv(r"/home/engineering/Documents/PdM/data/temp_data/temp_data_2026_01_19.csv", low_memory=False)
-    temp_df = pd.DataFrame(temp_data)
-
-    test_df = temp_df.copy()
-
     point_num = []
     point_name = []
-    for i in temp_point_df.loc[:,"Point_Name"]:
+    for i in column_name_df.loc[:,common]:
         point_num.append(i)
-    for j in temp_point_df.loc[:,"TechID"]:
+    for j in column_name_df.loc[:,label]:
         point_name.append(j)
 
     rename_dict = {}
-    for k in range(0,38):
+    for k in range(0,column_name_df.shape[0]):
         rename_dict[point_num[k]] = point_name[k]
+        
+    return_df.rename(columns=rename_dict)
 
-    test_df.rename(columns=rename_dict)
+    return return_df
 
 def import_files(path):
     data = pd.read_csv(path, low_memory=False)
