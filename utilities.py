@@ -5,9 +5,15 @@ dataframe with columns renamed
 
 # Import packages #
 import pandas as pd
+import csv
 
 # Functions #
-def rename_columns_with_df(column_name_df: pd.DataFrame, data_df: pd.DataFrame, common: str, label: str):
+def rename_columns_with_df(
+        column_name_df: pd.DataFrame, 
+        data_df: pd.DataFrame, 
+        common: str, 
+        label: str
+        )->pd.DataFrame:
     """
     A function that renames multiple columns of a dataframe using 
     another dataframe as input. This is helpful when there are too 
@@ -53,14 +59,39 @@ def rename_columns_with_df(column_name_df: pd.DataFrame, data_df: pd.DataFrame, 
     rename_dict = {}
     for k in range(0,column_name_df.shape[0]):
         rename_dict[point_num[k]] = point_name[k]
-        
+
     return_df.rename(columns=rename_dict)
 
     return return_df
 
-def import_files(path):
-    data = pd.read_csv(path, low_memory=False)
-    return pd.DataFrame(data)
+def import_files(path:str) -> pd.DataFrame:
+    """
+    A function that imports a csv file, verifies is correct format, 
+    and returns that file as a Pandas DataFrame. Will return
+    csv.Error if file is not a csv file.
+
+    Parameters
+    ----------
+    'path': string
+        A path to desired CSV file in the format of:
+        '/d_1/d_2/ ... /d_n/filename.csv'.
+    
+    Returns
+    -------
+    'df_data': Pandas DataFrame
+        The information from the inputted CSV file in DataFrame format.
+    """
+    try:
+        with open(path, 'r', newline='') as f:
+            sample = f.read(512)
+            dialect = csv.Sniffer().sniff(sample)
+
+        data = pd.read_csv(path, low_memory=False)
+        df_data = pd.DataFrame(data)
+        return df_data
+    
+    except csv.Error:
+        return csv.Error
 
 if __name__ == "__main__":
     rename_columns_with_df()
