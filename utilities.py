@@ -94,6 +94,9 @@ def import_csvfile(path:str) -> pd.DataFrame:
         
     except csv.Error:
         return csv.Error
+    
+def combine_csvfiles(path1, path2):
+    pass
 
 if __name__ == "__main__":
     rename_columns_with_df()
