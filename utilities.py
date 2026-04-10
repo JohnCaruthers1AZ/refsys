@@ -83,13 +83,15 @@ def import_csvfile(path:str) -> pd.DataFrame:
     """
     try:
         with open(path, 'r', newline='') as f:
-            sample = f.read(512)
+            sample = f.read(2048)
             dialect = csv.Sniffer().sniff(sample)
-
-        data = pd.read_csv(path, low_memory=False)
-        df_data = pd.DataFrame(data)
-        return df_data
-    
+        if dialect.delimiter == ',':
+            data = pd.read_csv(path, low_memory=False)
+            df_data = pd.DataFrame(data)
+            return df_data
+        else:
+            raise csv.Error
+        
     except csv.Error:
         return csv.Error
 
