@@ -64,7 +64,7 @@ def rename_columns_with_df(
 
     return return_df
 
-def import_files(path:str) -> pd.DataFrame:
+def import_csvfile(path:str) -> pd.DataFrame:
     """
     A function that imports a csv file, verifies is correct format, 
     and returns that file as a Pandas DataFrame. Will return
@@ -95,4 +95,4 @@ def import_files(path:str) -> pd.DataFrame:
 
 if __name__ == "__main__":
     rename_columns_with_df()
-    import_files()
+    import_csvfile()
