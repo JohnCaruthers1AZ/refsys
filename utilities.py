@@ -95,7 +95,10 @@ def import_csvfile(path:str) -> pd.DataFrame:
     except csv.Error:
         return csv.Error
     
-def combine_csvfiles(path1, path2):
+def combine_csvfiles(path1:str, path2:str):
+    pass
+
+def combine_date_time_col_to_datetime(path:str) -> pd.DataFrame:
     pass
 
 if __name__ == "__main__":
